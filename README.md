@@ -41,6 +41,10 @@ We do plan to create a packaged Docker image soon.
 
 5. Allow access to port 5281. Proxying to hide the port would be best (eg, use `wss://HOST/xmpp-websocket`).
 
+   If you don't proxy the WS connections, be sure to visit https://HOST:5281/xmpp-websocket first so that
+   any client certificate requests are fulfilled. Otherwise, connecting to otalk might fail because the
+   browser closes the websocket connection if prompted for client certs.
+
 
 ## To use &yet authentication (optional)
 
