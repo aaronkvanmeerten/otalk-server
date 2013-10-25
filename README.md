@@ -46,6 +46,24 @@ We do plan to create a packaged Docker image soon.
    browser closes the websocket connection if prompted for client certs.
 
 
+By default, You will need to ensure that these ports are open on your server:
+
+- 5222 (XMPP client to server connections)
+- 5269 (XMPP server to server connections)
+- 5280/5281 HTTP and WebSocket connection (5281 for SSL versions)
+
+You should also setup DNS SRV records:
+
+- `_xmpp-client._tcp.HOST 3600 IN SRV 0 10 5222 HOST`
+- `_xmpp-server._tcp.HOST 3600 IN SRV 0 10 5269 HOST`
+
+If you use the `mod_http_altconnect` module, Otalk will be able to auto-discover the WebSocket connection
+endpoint for your server, if you make https://HOST/.well-known/host-meta served by Prosody.
+
+One way to do this is to make Prosody act as your HTTP server. An example nginx config for doing that
+is included.
+
+
 ## To use &yet authentication (optional)
 
 **NOTE:** This is intended for use by otalk.im as a default authentication
