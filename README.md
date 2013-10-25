@@ -12,7 +12,7 @@ We do plan to create a packaged Docker image soon.
 
         sudo apt-get install prosody-trunk
 
-   You may need to follow the [instructions to install the Prosody PPA first](at http://prosody.im/download/package_repository).
+   You may need to follow the [instructions to install the Prosody PPA first](http://prosody.im/download/package_repository).
 
    Once a 0.10 candidate is released, we'll switch to that instead of trunk to avoid breaking changes.
 
