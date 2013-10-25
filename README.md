@@ -1,7 +1,9 @@
-# OTalk XMPP Server
+# Otalk XMPP Server
 
 Any XMPP server that supports websockets would work, but Prosody also supports
-some extra features that makes OTalk nicer to use, like message archiving.
+some extra features that makes Otalk nicer to use, like message archiving.
+
+We do plan to create a packaged Docker image soon.
 
 
 ## Installation
@@ -10,13 +12,17 @@ some extra features that makes OTalk nicer to use, like message archiving.
 
         sudo apt-get install prosody-trunk
 
-2. Install additional dependencies
+   You may need to follow the [instructions to install the Prosody PPA first](at http://prosody.im/download/package_repository).
+
+   Once a 0.10 candidate is released, we'll switch to that instead of trunk to avoid breaking changes.
+
+2. Install additional dependencies needed by MAM and WebSocket
 
         sudo apt-get install lua-zlib
         sudo apt-get install lua-sec-prosody
         sudo apt-get install lua-dbi-sqlite3
         sudo apt-get install liblua5.1-bitop-dev
-        sudo apt-get install liblua5.1-bitop0 
+        sudo apt-get install liblua5.1-bitop0
 
 3. Install the included modules
 
@@ -25,15 +31,24 @@ some extra features that makes OTalk nicer to use, like message archiving.
         sudo cp -r mod_smacks2 /usr/lib/prosody/modules
         sudo cp -r mod_smacks3 /usr/lib/prosody/modules
         sudo cp -r mod_websocket /usr/lib/prosody/modules
+        sudo cp -r mod_http_altconnect /usr/lib/prosody/modules
 
 4. Configure Prosody
+
+   First edit the included template config to replace the HOST value, and set any other desired options.
 
         sudo cp prosody.cfg.lua /etc/prosody/
 
 5. Allow access to port 5281. Proxying to hide the port would be best (eg, use `wss://HOST/xmpp-websocket`).
 
 
-## To use &yet authentication
+## To use &yet authentication (optional)
+
+**NOTE:** This is intended for use by otalk.im as a default authentication
+method for people who already have Andyet accounts to bootstrap the
+process and experience of using Otalk. If you're running your own private
+XMPP server, this is not needed, and you can use any of the various
+authentication backends provided by Prosody.
 
 1. Install external auth module
 

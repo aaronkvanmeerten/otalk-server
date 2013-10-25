@@ -30,6 +30,7 @@ modules_enabled = {
     "posix";
     "bosh";
     "websocket";
+    "http_altconnect";
 };
 
 allow_registration = false;
