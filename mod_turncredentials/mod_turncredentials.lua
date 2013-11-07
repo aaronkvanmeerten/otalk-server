@@ -39,8 +39,8 @@ module:hook("iq-get/host/urn:xmpp:extdisco:1:services", function(event)
             reply:tag("service", item):up();
         elseif item.type == "turn" then
             -- turn items need host, port (defaults to 3478), 
-	        -- transport (defaults to udp)
-	        -- username, password, ttl
+	          -- transport (defaults to udp)
+	          -- username, password, ttl
             item.username = userpart;
             item.password = nonce;
             item.ttl = ttl;
