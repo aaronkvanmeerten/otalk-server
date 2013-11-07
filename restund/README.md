@@ -8,6 +8,7 @@ On a fresh ubuntu machine, it might be necessary to install build-essential firs
   * possibly changing the prefix again
 * adapt the accomapanying restund.conf to your needs 
   * replace ip addresses
+  * change the realm to match your xmpp server domain (optional)
   * and make sure it contains the same shared secret as your prosody.cfg.lua
   * copy to /etc
 * copy restunds etc/restund to /etc/init.d/
