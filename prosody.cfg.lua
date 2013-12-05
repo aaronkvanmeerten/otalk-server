@@ -31,6 +31,7 @@ modules_enabled = {
     "bosh";
     "websocket";
     "http_altconnect";
+    "turncredentials";
 };
 
 allow_registration = false;
@@ -52,6 +53,13 @@ storage = {archive2 = "sql2"}
 sql = { driver = "SQLite3", database = "prosody.sqlite" }
 
 default_archive_policy = "roster"
+
+--turncredentials_secret = "yoursecretthing";
+--turncredentials = {
+--    { type = "stun", host = "8.8.8.8" },
+--    { type = "turn", host = "8.8.8.8", port = 3478 },
+--    { type = "turn", host = "8.8.8.8", port = 80, transport = "tcp" }
+--}
 
 log = {
     debug = "/var/log/prosody/prosody.log";

@@ -32,6 +32,7 @@ We do plan to create a packaged Docker image soon.
         sudo cp -r mod_smacks3 /usr/lib/prosody/modules
         sudo cp -r mod_websocket /usr/lib/prosody/modules
         sudo cp -r mod_http_altconnect /usr/lib/prosody/modules
+        sudo cp -r mod_turncredentials /usr/lib/prosody/modules
 
 4. Configure Prosody
 
@@ -45,12 +46,15 @@ We do plan to create a packaged Docker image soon.
    any client certificate requests are fulfilled. Otherwise, connecting to otalk might fail because the
    browser closes the websocket connection if prompted for client certs.
 
+6. Configure restund according to restund/README.md. Optional, but highly recommended.
+
 
 By default, You will need to ensure that these ports are open on your server:
 
 - 5222 (XMPP client to server connections)
 - 5269 (XMPP server to server connections)
 - 5280/5281 HTTP and WebSocket connection (5281 for SSL versions)
+- 3478 UDP (STUN/TURN)
 
 You should also setup DNS SRV records:
 
