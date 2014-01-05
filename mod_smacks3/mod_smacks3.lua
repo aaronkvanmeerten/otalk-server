@@ -1,5 +1,6 @@
 local st = require "util.stanza";
 local uuid_generate = require "util.uuid".generate;
+local user_exists = require "core.usermanager".user_exists;
 
 local t_insert, t_remove = table.insert, table.remove;
 local math_min = math.min;
@@ -198,19 +199,30 @@ end);
 -- and won't slow non-198 sessions). We can also then remove the .handled flag
 -- on stanzas
 
-function handle_unacked_stanzas(session)
+function handle_unacked_stanzas(session, origin)
 	local queue = session.outgoing_stanza_queue;
 	local error_attr = { type = "cancel" };
 	if #queue > 0 then
 		session.outgoing_stanza_queue = {};
 		for i=1,#queue do
-			local reply = st.reply(queue[i]);
-			if reply.attr.to ~= session.full_jid then
-				reply.attr.type = "error";
-				reply:tag("error", error_attr)
-					:tag("recipient-unavailable", {xmlns = "urn:ietf:params:xml:ns:xmpp-stanzas"});
-				core_process_stanza(session, reply);
-			end
+			local stanza = queue[i];
+			local t = stanza.attr.type;
+			if stanza.name == "message" and t == nil or t == "chat" or t == "normal" then
+				if not session.top_resources then
+					module:fire_event("message/offline/handle", {
+						origin = origin,
+						stanza = stanza
+					});
+				end
+			else
+				local reply = st.reply(queue[i]);
+				if reply.attr.to ~= session.full_jid then
+					reply.attr.type = "error";
+					reply:tag("error", error_attr)
+						:tag("recipient-unavailable", {xmlns = "urn:ietf:params:xml:ns:xmpp-stanzas"});
+					core_process_stanza(session, reply);
+				end
+		      end
 		end
 	end
 end
@@ -225,7 +237,7 @@ module:hook("pre-resource-unbind", function (event)
 				for i=1,#queue do
 					module:log("warn", "::%s", tostring(queue[i]));
 				end
-				handle_unacked_stanzas(session);
+				handle_unacked_stanzas(session, event.origin);
 			end
 		else
 			session.log("debug", "mod_smacks hibernating session for up to %d seconds", resume_timeout);

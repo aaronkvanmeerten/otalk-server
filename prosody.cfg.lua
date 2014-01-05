@@ -32,6 +32,7 @@ modules_enabled = {
     "websocket";
     "http_altconnect";
     "turncredentials";
+    "idlecompat";
 };
 
 allow_registration = false;

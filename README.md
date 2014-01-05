@@ -33,6 +33,7 @@ We do plan to create a packaged Docker image soon.
         sudo cp -r mod_websocket /usr/lib/prosody/modules
         sudo cp -r mod_http_altconnect /usr/lib/prosody/modules
         sudo cp -r mod_turncredentials /usr/lib/prosody/modules
+        sudo cp -r mod_idlecompat /usr/lib/prosody/modules
 
 4. Configure Prosody
 
