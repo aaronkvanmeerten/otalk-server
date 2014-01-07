@@ -2,6 +2,8 @@ admins = { "ADMIN@HOST" }
 daemonize = true
 pidfile = "/var/run/prosody/prosody.pid"
 
+plugin_paths = { "/opt/otalk-server" }
+
 modules_enabled = {
     "roster";
     "saslauth";

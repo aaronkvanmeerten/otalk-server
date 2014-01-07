@@ -26,14 +26,17 @@ We do plan to create a packaged Docker image soon.
 
 3. Install the included modules
 
-        sudo cp -r mod_carbons /usr/lib/prosody/modules
-        sudo cp -r mod_mam /usr/lib/prosody/modules
-        sudo cp -r mod_smacks2 /usr/lib/prosody/modules
-        sudo cp -r mod_smacks3 /usr/lib/prosody/modules
-        sudo cp -r mod_websocket /usr/lib/prosody/modules
-        sudo cp -r mod_http_altconnect /usr/lib/prosody/modules
-        sudo cp -r mod_turncredentials /usr/lib/prosody/modules
-        sudo cp -r mod_idlecompat /usr/lib/prosody/modules
+        sudo mkdir /opt/otalk-server
+        sudo cp -r mod_carbons /opt/otalk-server
+        sudo cp -r mod_mam /opt/otalk-server
+        sudo cp -r mod_smacks2 /opt/otalk-server
+        sudo cp -r mod_smacks3 /opt/otalk-server
+        sudo cp -r mod_websocket /opt/otalk-server
+        sudo cp -r mod_http_altconnect /opt/otalk-server
+        sudo cp -r mod_turncredentials /opt/otalk-server
+        sudo cp -r mod_idlecompat /opt/otalk-server
+
+  Alternatively, you can just clone the otalk-server repo to `/opt/otalk-server`.
 
 4. Configure Prosody
 
