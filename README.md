@@ -8,13 +8,11 @@ We do plan to create a packaged Docker image soon.
 
 ## Installation
 
-1. Install Prosody. We want to use message archiving, which requires trunk for now.
+1. Install Prosody.
 
-        sudo apt-get install prosody-trunk
+        sudo apt-get install prosody-0.10
 
    You may need to follow the [instructions to install the Prosody PPA first](http://prosody.im/download/package_repository).
-
-   Once a 0.10 candidate is released, we'll switch to that instead of trunk to avoid breaking changes.
 
 2. Install additional dependencies needed by MAM and WebSocket
 
