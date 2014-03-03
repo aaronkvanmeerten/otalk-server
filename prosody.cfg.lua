@@ -14,8 +14,7 @@ modules_enabled = {
     "vcard";
     "privacy";
     "compression";
-    "smacks3";
-    "smacks2";
+    "smacks";
     "carbons";
     "mam";
     "lastactivity";
