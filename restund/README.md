@@ -7,7 +7,7 @@ On a fresh ubuntu machine, it might be necessary to install build-essential firs
   * patch -p1 < restund/restund-auth.patch
 * make, sudo make install
   * possibly changing the prefix again
-* adapt the accomapanying restund.conf to your needs 
+* adapt the restund.conf to your needs 
   * replace ip addresses
   * change the realm to match your xmpp server domain (optional)
   * and make sure it contains the same shared secret as your prosody.cfg.lua
