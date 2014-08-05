@@ -41,10 +41,10 @@ module:hook("iq-get/host/urn:xmpp:extdisco:1:services", function(event)
     local nonce = base64.encode(hmac_sha1(secret, tostring(userpart), false));
     local reply = st.reply(stanza):tag("services", {xmlns = "urn:xmpp:extdisco:1"})
     for idx, item in pairs(hosts) do
-        if item.type == "stun" then
+        if item.type == "stun" or item.type == "stuns" then
             -- stun items need host and port (defaults to 3478)
             reply:tag("service", item):up();
-        elseif item.type == "turn" then
+        elseif item.type == "turn" or item.type == "turns" then
             -- turn items need host, port (defaults to 3478), 
 	          -- transport (defaults to udp)
 	          -- username, password, ttl
