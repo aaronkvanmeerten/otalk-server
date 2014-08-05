@@ -24,6 +24,13 @@ if not (secret) then
     return;
 end
 
+module:hook_global("config-reloaded", function()
+    module:log("debug", "config-reloaded")
+    secret = module:get_option_string("turncredentials_secret");
+    ttl = module:get_option_number("turncredentials_ttl", 86400);
+    hosts = module:get_option("turncredentials") or {};
+end);
+
 module:hook("iq-get/host/urn:xmpp:extdisco:1:services", function(event)
     local origin, stanza = event.origin, event.stanza;
     if origin.type ~= "c2s" then
